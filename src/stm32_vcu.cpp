@@ -1124,6 +1124,18 @@ static void UpdateShifter() {
   canInterface[1]->ClearUserMessages();
 }
 
+static void UpdateDirPins() {
+  if (Param::GetInt(Param::dirmode) == DIR_BUTTONPULLUP) {
+    // Internal pull-up, inverted logic: switch-to-GND reads as active/true
+    DigIo::fwd_in.Configure(GPIOB, GPIO4, PinMode::INPUT_PU_INV);
+    DigIo::rev_in.Configure(GPIOB, GPIO3, PinMode::INPUT_PU_INV);
+  } else {
+    // Restore default floating config for every other dirmode
+    DigIo::fwd_in.Configure(GPIOB, GPIO4, PinMode::INPUT_FLT);
+    DigIo::rev_in.Configure(GPIOB, GPIO3, PinMode::INPUT_FLT);
+  }
+}
+
 // Whenever the user clears mapped can messages or changes the
 // CAN interface of a device, this will be called by the CanHardware module
 static void SetCanFilters() {
@@ -1273,6 +1285,8 @@ void Param::Change(Param::PARAM_NUM paramNum) {
   IOMatrix::AssignFromParamsAnalogue();
 
   preheater.ParamsChange();
+
+  UpdateDirPins();
 }
 
 static bool CanCallback(

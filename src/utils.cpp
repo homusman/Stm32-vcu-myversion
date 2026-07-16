@@ -249,6 +249,19 @@ void SelectDirection(Vehicle *vehicle, Shifter *shifter) {
         userDirSelection = -1 * dirSign;
       else
         userDirSelection = selectedDir;
+    } else if (Param::GetInt(Param::dirmode) == DIR_BUTTONPULLUP) {
+      /* fwd_in/rev_in are reconfigured as INPUT_PU_INV (see UpdateDirPins()),
+      * din_forward/din_reverse behave exactly like normal active-high
+      * button inputs from here on. */
+      if (Param::GetBool(Param::din_forward) &&
+          Param::GetBool(Param::din_reverse))
+        selectedDir = 0;
+      else if (Param::GetBool(Param::din_forward))
+        userDirSelection = 1;
+      else if (Param::GetBool(Param::din_reverse))
+        userDirSelection = -1;
+      else
+        userDirSelection = selectedDir;
     } else {
       /* neither forward nor reverse or both forward and reverse -> neutral */
       if (!(Param::GetBool(Param::din_forward) ^

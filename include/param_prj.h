@@ -62,7 +62,7 @@
   PARAM_ENTRY(CAT_THROTTLE, regenBrake, "%", -35, 0, -10, 122)                 \
   PARAM_ENTRY(CAT_THROTTLE, regenramp, "%/10ms", 0.1, 100, 1, 68)              \
   PARAM_ENTRY(CAT_THROTTLE, potmode, POTMODES, 0, 1, 0, 11)                    \
-  PARAM_ENTRY(CAT_THROTTLE, dirmode, DIRMODES, 0, 4, 1, 12)                    \
+  PARAM_ENTRY(CAT_THROTTLE, dirmode, DIRMODES, 0, 5, 1, 12)                    \
   PARAM_ENTRY(CAT_THROTTLE, DirChange, DIRLIM, 0, 2, 0, 147)                   \
   PARAM_ENTRY(CAT_THROTTLE, DirChangeRpm, "rpm", 0, 20000, 500, 139)           \
   PARAM_ENTRY(CAT_THROTTLE, reversemotor, ONOFF, 0, 1, 0, 127)                 \
@@ -301,7 +301,7 @@
 #define POTMODES "0=SingleChannel, 1=DualChannel"
 #define BTNSWITCH "0=Button, 1=Switch, 2=CAN"
 #define DIRMODES                                                               \
-  "0=Button, 1=Switch, 2=ButtonReversed, 3=SwitchReversed, 4=DefaultForward"
+  "0=Button, 1=Switch, 2=ButtonReversed, 3=SwitchReversed, 4=DefaultForward, 5=ButtonPullUp"
 #define INVMODES                                                               \
   "0=None, 1=Leaf_Gen1, 2=GS450H, 3=UserCAN, 4=OpenI, 5=Prius_Gen3, "          \
   "6=Outlander, 7=GS300H, 8=RearOutlander"
@@ -397,7 +397,8 @@ enum _dirmodes {
   DIR_BUTTON = 0,
   DIR_SWITCH = 1,
   DIR_REVERSED = 2,
-  DIR_DEFAULTFORWARD = 4
+  DIR_DEFAULTFORWARD = 4,
+  DIR_BUTTONPULLUP = 5
 };
 
 enum InvModes {
