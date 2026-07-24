@@ -1125,10 +1125,10 @@ static void UpdateShifter() {
 }
 
 static void UpdateDirPins() {
-  if (Param::GetInt(Param::dirmode) == DIR_BUTTONPULLUP) {
+  if (Param::GetInt(Param::dirmode) == DIR_BUTTONINVERTED) {
     // Internal pull-up, inverted logic: switch-to-GND reads as active/true
-    DigIo::fwd_in.Configure(GPIOB, GPIO4, PinMode::INPUT_PU_INV);
-    DigIo::rev_in.Configure(GPIOB, GPIO3, PinMode::INPUT_PU_INV);
+    DigIo::fwd_in.Configure(GPIOB, GPIO4, PinMode::INPUT_FLT_INV);
+    DigIo::rev_in.Configure(GPIOB, GPIO3, PinMode::INPUT_FLT_INV);
   } else {
     // Restore default floating config for every other dirmode
     DigIo::fwd_in.Configure(GPIOB, GPIO4, PinMode::INPUT_FLT);

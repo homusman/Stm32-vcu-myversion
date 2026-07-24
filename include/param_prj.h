@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#define VER 2.40A
+#define VER 2.40At2
 
 /* Entries must be ordered as follows:
    1. Saveable parameters (id != 0)
@@ -301,7 +301,7 @@
 #define POTMODES "0=SingleChannel, 1=DualChannel"
 #define BTNSWITCH "0=Button, 1=Switch, 2=CAN"
 #define DIRMODES                                                               \
-  "0=Button, 1=Switch, 2=ButtonReversed, 3=SwitchReversed, 4=DefaultForward, 5=ButtonPullUp"
+  "0=Button, 1=Switch, 2=ButtonReversed, 3=SwitchReversed, 4=DefaultForward, 5=ButtonLogicInverted"
 #define INVMODES                                                               \
   "0=None, 1=Leaf_Gen1, 2=GS450H, 3=UserCAN, 4=OpenI, 5=Prius_Gen3, "          \
   "6=Outlander, 7=GS300H, 8=RearOutlander"
@@ -398,7 +398,7 @@ enum _dirmodes {
   DIR_SWITCH = 1,
   DIR_REVERSED = 2,
   DIR_DEFAULTFORWARD = 4,
-  DIR_BUTTONPULLUP = 5
+  DIR_BUTTONINVERTED = 5
 };
 
 enum InvModes {
